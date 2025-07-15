@@ -1,0 +1,91 @@
+picotron cartridge // www.picotron.net
+version 2
+
+:: gfx/
+:: gfx/0.gfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTE1IDE2OjIxOjQ5Iixtb2RpZmllZD0iMjAyNS0w
+Ny0xNSAxODoxNzowOSIscmV2aXNpb249MTA1XV1sejQAfgAAABIxAADzIXtbMF09e2JtcD1weHUA
+QyAQEATwVgcQB8AX0BfABxAH8FYsZmxhZ3M9MCxwYW5feAgAy3k9MCx6b29tPTh9LD4AH-AxAP--
+-------------------------------------------------------------9dQbT04fX0=
+:: gfx/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTE1IDE4OjE3OjA5Iixtb2RpZmllZD0iMjAyNS0w
+Ny0xNSAxODoyODo1MyJdXQ==
+:: map/
+:: map/0.map
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTE1IDE2OjIxOjQ5Iixtb2RpZmllZD0iMjAyNS0w
+Ny0xNSAxODoxNzowOSIscmV2aXNpb249MTA0XV1sejQAWgAAAEsQAADwCHt7Ym1wPXVzZXJkYXRh
+KCJpMTYiLDMyAwAvIjABAP--------------------uhIikscGFuX3g9MAgA0nk9MCx0aWxlX2g9
+MTYKABB3CgCAem9vbT0xfX0=
+:: map/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTE1IDE4OjE3OjA5Iixtb2RpZmllZD0iMjAyNS0w
+Ny0xNSAxODoyODo1MyJdXQ==
+:: sfx/
+:: sfx/0.sfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTE1IDE2OjIxOjQ5Iixtb2RpZmllZD0iMjAyNS0w
+Ny0xNSAxODoxNzowOSIscmV2aXNpb249MTA0XV1sejQAoAAAAAsKAAD-MHB4dQADKAAABAAED0AQ
+Ag4AAaABIAKgDgAPEAAN8MoBAgNADw_QBAUGB0AMkAgJCgtADJAPDA8NDw4MQAzw-wEA6-8nqgEQ
+Bg8gEAEgASAB8AACEAIOEAEgDyEgATAPQPDDDygP--DGD-gKD-8PgA-3Dw0B8AkBEAYOMAD-----
+-70f-wEArM-ID0AADxBA--_w8P8BAP-qUP----8p
+:: sfx/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTE1IDE4OjE3OjA5Iixtb2RpZmllZD0iMjAyNS0w
+Ny0xNSAxODoyODo1MyJdXQ==
+:: main.lua
+--[[pod_format="raw",created="2025-07-15 16:21:49",modified="2025-07-15 18:17:09",revision=217]]
+function _init()
+	vid(4)
+
+	hex_codes={
+		[0]="#000000","#1d2b53","#7e2553","#008751",
+		"#ab5236","#5f574f","#c2c3c7","#fff1e8",
+		"#ff004d","#ffa300","#ffec27","#00e436",
+		"#29adff","#83769c","#ff77a8","#ffccaa",
+		"#2463b0","#00a5a1","#654688","#125359",
+		"#742f29","#452d32","#a28879","#ffacc5",
+		"#b9003e","#e26b02","#95f042","#00b251",
+		"#64dff6","#bd9adf","#e40dab","#ff8557"
+	}
+
+	gui=create_gui()
+
+	for i=0,31 do
+		gui:attach {
+			x=i*10%160, y=flr(i/16)*10, width=10, height=10,
+			draw=function(self)
+				rectfill(1,1,9,9,i)
+			end,
+			click=function(self)
+				cls()
+				rectfill(1,21,79,88,i)
+				?hex_codes[i],81,21,max(1,i)
+				set_clipboard(hex_codes[i])
+				notify("                Co\v7,digo copiado!")
+			end
+		}
+	end
+end
+
+function _update()
+	gui:update_all()
+end
+
+function _draw()
+	gui:draw_all()
+end
+:: .info.pod
+b64$LS1bW3BvZCxhdXRob3I9IkxvYm8iLGNyZWF0ZWQ9IjIwMjUtMDctMTUgMTg6MTQ6MzMiLGlj
+b249dXNlcmRhdGEoInU4IiwxNiwxNiwiMDAwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDAw
+MTA4MDgwODA4MDEwYjBiMGIwYjAxMTAxMDEwMTAwMTAxMDgwODA4MDgwMTBiMGIwYjBiMDExMDEw
+MTAxMDAxMDEwODA4MDgwODAxMGIwYjBiMGIwMTEwMTAxMDEwMDEwMTA4MDgwODA4MDEwYjBiMGIw
+YjAxMTAxMDEwMTAwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwYTBhMGEwYTAx
+MWUxZTFlMWUwMTFjMWMxYzFjMDEwMTBhMGEwYTBhMDExZTFlMWUxZTAxMWMxYzFjMWMwMTAxMGEw
+YTBhMGEwMTFlMWUxZTFlMDExYzFjMWMxYzAxMDEwYTBhMGEwYTAxMWUxZTFlMWUwMTFjMWMxYzFj
+MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDcwMTAxMDcwMTA3MDcwNzA3MDEw
+NzAxMDEwNzAxMDEwNzAxMDEwNzAxMDcwMTAxMDEwMTAxMDcwNzAxMDEwMTA3MDcwNzA3MDEwNzA3
+MDcwMTAxMDEwNzA3MDEwMTAxMDcwMTAxMDcwMTA3MDcwNzA3MDEwNzAxMDEwNzAxMDAwMTAxMDEw
+MTAxMDEwMTAxMDEwMTAxMDEwMTAxMDAiKSxtb2RpZmllZD0iMjAyNS0wNy0xNSAxODoyODo1MyIs
+bm90ZXM9IiIscnVudGltZT0xOCx0aXRsZT0iSGV4IENvbG9ycyIsdmVyc2lvbj0iMS4wIix3b3Jr
+c3BhY2VzPXt7bG9jYXRpb249Im1haW4ubHVhIzI4Iix3b3Jrc3BhY2VfaW5kZXg9MX0se2xvY2F0
+aW9uPSJnZngvMC5nZngiLHdvcmtzcGFjZV9pbmRleD0yfSx7bG9jYXRpb249Im1hcC8wLm1hcCIs
+d29ya3NwYWNlX2luZGV4PTN9LHtsb2NhdGlvbj0ic2Z4LzAuc2Z4Iix3b3Jrc3BhY2VfaW5kZXg9
+NH19XV0=
+:: [eoc]
